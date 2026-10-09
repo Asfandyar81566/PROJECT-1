@@ -1,0 +1,905 @@
+/* ================================
+   FOOTBALL UNIVERSE - MAIN CSS
+   ================================ */
+
+/* ================================
+   1. ROOT VARIABLES
+   ================================ */
+:root {
+    --accent: #00ff88;
+    --accent-dim: #00c96b;
+    --accent-soft: rgba(0, 255, 136, 0.25);
+    --accent-glow: rgba(0, 255, 136, 0.5);
+    --bg-deep: #030706;
+    --bg-mid: #07110d;
+    --bg-top: #123d2a;
+    --bg-card: rgba(255, 255, 255, 0.04);
+    --text: #f5f5f5;
+    --text-soft: #cdd8d2;
+    --text-muted: #84948b;
+    --border-soft: rgba(0, 255, 136, 0.15);
+    --shadow-deep: 0 15px 40px rgba(0, 0, 0, 0.55);
+    --shadow-glow: 0 0 25px rgba(0, 255, 136, 0.35);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --transition: 0.3s ease;
+}
+
+/* ================================
+   2. RESET
+   ================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(circle at top, var(--bg-top) 0%, var(--bg-mid) 35%, var(--bg-deep) 100%);
+    background-attachment: fixed;
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Subtle football pattern overlay */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* ================================
+   3. NAVIGATION
+   ================================ */
+nav {
+    background: rgba(3, 10, 7, 0.85);
+    padding: 18px 25px;
+    text-align: center;
+    border-bottom: 1px solid var(--accent-soft);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: padding var(--transition), background var(--transition), box-shadow var(--transition);
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+    margin: 0 5px;
+    padding: 6px 4px;
+    position: relative;
+    transition: color var(--transition);
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent-glow);
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--accent);
+    text-shadow: 0 0 10px var(--accent-glow);
+}
+
+nav a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Active page highlight */
+nav a.active {
+    color: var(--accent);
+    text-shadow: 0 0 10px var(--accent-glow);
+}
+
+nav a.active::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Navbar shrink on scroll */
+nav.scrolled {
+    padding: 10px 25px;
+    background: rgba(3, 10, 7, 0.98);
+    box-shadow: 0 3px 20px rgba(0, 255, 136, 0.15);
+}
+
+/* ================================
+   4. HEADINGS
+   ================================ */
+h1 {
+    text-align: center;
+    font-size: 48px;
+    margin: 45px 20px 20px;
+    color: #ffffff;
+    letter-spacing: 1px;
+    text-shadow: 0 0 20px rgba(0, 255, 128, 0.35);
+    position: relative;
+    animation: fadeDown 0.8s ease both;
+}
+
+h1::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    margin: 18px auto 0;
+    background: var(--accent);
+    border-radius: 2px;
+    box-shadow: 0 0 15px var(--accent-glow);
+    animation: expandLine 0.8s 0.3s ease both;
+}
+
+@keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes expandLine {
+    from { width: 0; opacity: 0; }
+    to   { width: 80px; opacity: 1; }
+}
+
+h2 {
+    color: var(--accent);
+    margin: 30px 0 15px;
+    letter-spacing: 0.5px;
+    position: relative;
+    padding-left: 15px;
+}
+
+h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 70%;
+    background: var(--accent);
+    border-radius: 4px;
+    box-shadow: 0 0 12px var(--accent-glow);
+}
+
+h3 {
+    color: #ffffff;
+    margin: 15px 0;
+}
+
+/* ================================
+   5. PARAGRAPHS & TEXT
+   ================================ */
+p {
+    max-width: 950px;
+    margin: 15px auto;
+    color: var(--text-soft);
+    font-size: 17px;
+    padding: 0 15px;
+}
+
+strong, b {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+em, i {
+    color: #b8c6be;
+}
+
+sub {
+    color: var(--accent);
+    font-size: 12px;
+}
+
+/* ================================
+   6. LINKS
+   ================================ */
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+a:hover {
+    color: #ffffff;
+    text-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* ================================
+   7. IMAGES
+   ================================ */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 25px auto;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-deep);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border: 1px solid rgba(0, 255, 136, 0.08);
+}
+
+img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 255, 136, 0.15);
+}
+
+/* ================================
+   8. MAIN CONTENT WRAPPER
+   ================================ */
+main,
+header,
+body > section {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 15px;
+}
+
+/* ================================
+   9. LISTS (Card-like items)
+   ================================ */
+ul {
+    list-style: none;
+    max-width: 900px;
+    margin: 25px auto;
+    padding: 0 15px;
+}
+
+li {
+    background: var(--bg-card);
+    border: 1px solid var(--border-soft);
+    padding: 16px 20px;
+    margin: 12px 0;
+    border-radius: var(--radius-sm);
+    transition: transform var(--transition), border-color var(--transition),
+                background var(--transition), box-shadow var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--accent);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform var(--transition);
+}
+
+li:hover {
+    transform: translateX(8px);
+    border-color: var(--accent);
+    background: rgba(0, 255, 136, 0.08);
+    box-shadow: 0 5px 20px rgba(0, 255, 136, 0.12);
+}
+
+li:hover::before {
+    transform: scaleY(1);
+}
+
+li a {
+    text-decoration: none;
+    color: #ffffff;
+    display: block;
+    transition: color var(--transition);
+}
+
+li a:hover {
+    color: var(--accent);
+}
+
+/* ================================
+   10. HORIZONTAL LINE
+   ================================ */
+hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--accent), transparent);
+    margin: 30px auto;
+    max-width: 1100px;
+    opacity: 0.6;
+}
+
+/* ================================
+   11. TABLE
+   ================================ */
+table {
+    width: 92%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.45);
+    border: 1px solid var(--border-soft);
+}
+
+thead {
+    background: linear-gradient(135deg, #075c35, #04351f);
+}
+
+th {
+    color: #ffffff;
+    padding: 16px;
+    text-align: center;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--accent-soft);
+}
+
+td {
+    padding: 14px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    color: #dce5df;
+}
+
+tbody tr {
+    transition: background var(--transition), transform var(--transition);
+}
+
+tbody tr:hover {
+    background: rgba(0, 255, 136, 0.08);
+    transform: scale(1.01);
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ================================
+   12. FORM
+   ================================ */
+form {
+    width: 90%;
+    max-width: 650px;
+    margin: 40px auto;
+    padding: 35px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+form div {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--accent);
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid rgba(0, 255, 136, 0.25);
+    border-radius: var(--radius-sm);
+    background: #0b1711;
+    color: #ffffff;
+    font-size: 15px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #5a6b62;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 12px rgba(0, 255, 136, 0.25);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+button {
+    display: block;
+    margin: 25px auto 0;
+    padding: 13px 30px;
+    border: none;
+    border-radius: 30px;
+    background: var(--accent-dim);
+    color: #031008;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+button:hover {
+    background: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 255, 136, 0.3);
+}
+
+button:active {
+    transform: translateY(-1px);
+}
+
+/* ================================
+   13. CARDS (generic)
+   ================================ */
+.card,
+.player-card,
+.match-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius);
+    padding: 20px 25px;
+    margin: 15px auto;
+    max-width: 900px;
+    transition: transform 0.25s ease, border-color var(--transition),
+                background var(--transition), box-shadow var(--transition);
+    will-change: transform;
+}
+
+.card:hover,
+.player-card:hover,
+.match-card:hover {
+    border-color: var(--accent);
+    background: rgba(0, 255, 136, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 255, 136, 0.15);
+}
+
+.card h2,
+.card h3,
+.player-card h3,
+.match-card h3 {
+    color: var(--accent);
+    margin-top: 0;
+}
+
+.card p,
+.player-card p,
+.match-card p {
+    color: var(--text-soft);
+    margin: 8px 0;
+}
+
+a.card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ================================
+   14. NEWS SECTIONS
+   ================================ */
+body > h2 {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 15px;
+}
+
+body > p {
+    padding: 0 20px;
+}
+
+/* ================================
+   15. FOOTER
+   ================================ */
+footer {
+    margin-top: 80px;
+    padding: 40px 30px 30px;
+    text-align: center;
+    background: #020604;
+    border-top: 1px solid rgba(0, 255, 136, 0.2);
+    color: var(--text-muted);
+    position: relative;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: var(--accent);
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+footer p {
+    margin: 8px auto;
+    color: var(--text-muted);
+    font-size: 14px;
+    max-width: 800px;
+}
+
+footer a {
+    color: var(--accent);
+    text-decoration: none;
+    margin: 0 8px;
+    transition: color var(--transition);
+}
+
+footer a:hover {
+    color: #ffffff;
+    text-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* ================================
+   16. SCROLLBAR (Custom)
+   ================================ */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #07110d;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #075c35, #00c96b);
+    border-radius: 5px;
+    border: 2px solid #07110d;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+
+/* ================================
+   17. TEXT SELECTION
+   ================================ */
+::selection {
+    background: var(--accent);
+    color: #031008;
+}
+
+::-moz-selection {
+    background: var(--accent);
+    color: #031008;
+}
+
+/* ================================
+   18. JS-GENERATED ELEMENTS
+   ================================ */
+
+/* Scroll Reveal */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Back to Top Button */
+#backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #030706;
+    border: none;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px var(--accent-glow);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#backToTop.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#backToTop:hover {
+    transform: translateY(-4px) scale(1.08);
+    box-shadow: 0 8px 28px rgba(0, 255, 128, 0.8);
+}
+
+/* Hamburger (mobile) */
+#hamburger {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--accent);
+    font-size: 26px;
+    cursor: pointer;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 5px 10px;
+    transition: color var(--transition);
+}
+
+#hamburger:hover {
+    color: #ffffff;
+    text-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* ================================
+   19. FEATURED MATCH (optional)
+   ================================ */
+.featured-match {
+    margin: 60px auto;
+    max-width: 750px;
+    text-align: center;
+    padding: 0 15px;
+}
+
+.featured-match h2 {
+    padding-left: 0;
+    text-align: center;
+}
+
+.featured-match h2::before {
+    display: none;
+}
+
+.match-card {
+    background: linear-gradient(135deg, rgba(0, 255, 128, 0.08), rgba(0, 255, 128, 0.02));
+    border: 2px solid var(--accent-soft);
+    border-radius: 16px;
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.match-card .team {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--accent);
+}
+
+.match-card .vs {
+    font-size: 1.2rem;
+    color: #f5f5f5;
+    opacity: 0.6;
+}
+
+.match-card h3[data-countdown] {
+    color: var(--accent);
+    font-size: 1.8rem;
+    text-shadow: 0 0 15px var(--accent-glow);
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* ================================
+   20. BADGE / TAG
+   ================================ */
+.badge,
+.tag {
+    display: inline-block;
+    background: rgba(0, 255, 136, 0.12);
+    color: var(--accent);
+    border: 1px solid var(--accent-soft);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin: 0 4px;
+}
+
+/* ================================
+   21. RESPONSIVE - TABLET
+   ================================ */
+@media (max-width: 768px) {
+
+    nav {
+        padding: 18px 60px;
+        position: relative;
+    }
+
+    #hamburger {
+        display: block;
+    }
+
+    nav a {
+        display: none;
+        margin: 10px 0;
+        font-size: 14px;
+    }
+
+    nav.menu-open a {
+        display: block;
+    }
+
+    nav.menu-open {
+        padding-bottom: 20px;
+    }
+
+    h1 {
+        font-size: 34px;
+        margin-top: 30px;
+    }
+
+    h1::after {
+        width: 60px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    p {
+        width: 90%;
+        font-size: 15px;
+    }
+
+    table {
+        width: 96%;
+        font-size: 12px;
+        overflow-x: auto;
+        display: block;
+    }
+
+    th, td {
+        padding: 9px;
+        white-space: nowrap;
+    }
+
+    form {
+        width: 94%;
+        padding: 22px;
+    }
+
+    img {
+        max-width: 92%;
+    }
+
+    .match-card {
+        padding: 20px;
+    }
+
+    .match-card .team {
+        font-size: 1.2rem;
+    }
+
+    .match-card h3[data-countdown] {
+        font-size: 1.4rem;
+    }
+}
+
+/* ================================
+   22. RESPONSIVE - SMALL MOBILE
+   ================================ */
+@media (max-width: 480px) {
+
+    h1 {
+        font-size: 26px;
+    }
+
+    h1::after {
+        width: 50px;
+    }
+
+    nav a {
+        font-size: 12px;
+    }
+
+    li {
+        padding: 13px;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    #backToTop {
+        width: 42px;
+        height: 42px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 18px;
+    }
+}
+
+/* ================================
+   23. REDUCED MOTION (Accessibility)
+   ================================ */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    img:hover,
+    li:hover,
+    tbody tr:hover,
+    button:hover,
+    .card:hover {
+        transform: none;
+    }
+}
+
+/* ================================
+   24. PRINT STYLES
+   ================================ */
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+
+    nav, footer, #backToTop, #hamburger {
+        display: none;
+    }
+
+    a {
+        color: black;
+        text-decoration: underline;
+    }
+}
